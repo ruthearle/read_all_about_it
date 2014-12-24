@@ -5,8 +5,9 @@
   "main": "server.js",
   "author": "ruthearle",
   "dependencies": {
-    "restify": "latest",
+    "mongoose": "^3.8.21",
     "request": "latest",
-    "cheerio": "latest"
+    "restify": "latest",
+    "rssparser": "0.0.9"
   }
 }
