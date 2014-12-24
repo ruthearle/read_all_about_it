@@ -1,0 +1,12 @@
+{
+  "name": "readAllAboutIt",
+  "version": "0.0.1",
+  "description": "News Aggregator",
+  "main": "server.js",
+  "author": "ruthearle",
+  "dependencies": {
+    "restify": "latest",
+    "request": "latest",
+    "cheerio": "latest"
+  }
+}
