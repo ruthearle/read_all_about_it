@@ -8,10 +8,11 @@ var restify = require('restify'),
     db = require('./model/news'),
     news = restifyMongoose(db);
 
-var server = restify.createServer({
-  name: 'ReadAllAboutIt',
-  version: '0.0.1'
+var server = restify.createServer(function (request, response) {
+  name: 'ReadAllAboutIt'
 });
+
+
 
 // populate db with sky, BBC and Hackers rss news feeds
 parser.parseURL('http://news.sky.com/feeds/rss/home.xml', options, function(err, sky){
@@ -74,13 +75,16 @@ server.use(restify.bodyParser());
 
 // Homepage is mapped to showing all news items
 server.get('/', news.query(), function(request, response, next) {
-  response.send();
+  response.send("Test");
   return next();
 });
 
 // Routes made available through Restify-Mongoose.
 server.get('/news/:id', news.detail());
-
+server.get(/.*/, restify.serveStatic({
+  'directory': 'public',
+  'default': 'index.html'
+}));
 
 
 server.listen(8080, function(){
