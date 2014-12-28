@@ -5,9 +5,14 @@
   "main": "server.js",
   "author": "ruthearle",
   "dependencies": {
+    "mongodb": "^1.4.26",
+    "mongojs": "^0.18.0",
     "mongoose": "^3.8.21",
     "request": "latest",
     "restify": "latest",
-    "rssparser": "0.0.9"
+    "rssparser": "0.0.9",
+    "underscore": "^1.7.0",
+    "restify-mongoose": "latest",
+    "mongoose-ttl": "latest"
   }
 }
