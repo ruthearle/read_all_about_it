@@ -8,6 +8,7 @@ var restify = require('restify'),
     db = require('./model/news'),
     news = restifyMongoose(db);
 
+// Create the server using Restify
 var server = restify.createServer(function (request, response) {
   name: 'ReadAllAboutIt'
 });
@@ -73,19 +74,21 @@ server.use(restify.acceptParser(server.acceptable));
 server.use(restify.fullResponse());
 server.use(restify.bodyParser());
 
-// Homepage is mapped to showing all news items
-server.get('/', news.query(), function(request, response, next) {
-  response.send("Test");
-  return next();
-});
-
-// Routes made available through Restify-Mongoose.
-server.get('/news/:id', news.detail());
+// Serve static files
 server.get(/.*/, restify.serveStatic({
   'directory': 'public',
   'default': 'index.html'
 }));
 
+// Homepage is mapped to showing index.html, which will be used to show news content
+server.get('/index.html', function(request, response, next) {
+  response.send("Test");
+  return next();
+});
+
+// Routes made available through Restify-Mongoose.
+server.get('/news', news.query());
+server.get('/news/:id', news.detail());
 
 server.listen(8080, function(){
   console.log('%s listening at %s', server.name, server.url);
