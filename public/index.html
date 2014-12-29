@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html data-ng-app='app'>
 
 <head lang="en">
   <meta charset="UTF-8">
@@ -19,9 +19,9 @@
   <script src="app.js"></script>
 </head>
 
-<body ng-app="app" ng-controller="MainController as main">
-  <div class="container">
-    <h1>{{main.title}}</h1>
+<body>
+  <div data-ng-controller="MainController" class="container">
+    <h1>{{ 5 + 5 }}</h1>
   </div>
 </body>
 </html>

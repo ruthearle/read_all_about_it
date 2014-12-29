@@ -4,8 +4,6 @@ var mongoose = require('mongoose'),
     ObjectId = mongoose.ObjectId;
     //ttl = require('mongoose-ttl'),
 
-
-
 // Defining the schema for the news aggregator
 var newsItemsSchema = new Schema({
     provider: String,
