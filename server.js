@@ -2,10 +2,11 @@ var restify = require('restify'),
     fs      = require('fs'),
     request = require('request'),
     parser = require('rssparser'),
-    restifyMongoose = require('restify-mongoose'),
     options = {},
     __ = require('underscore'),
+    mongoose  = require('mongoose')
     db = require('./model/news'),
+    restifyMongoose = require('restify-mongoose'),
     news = restifyMongoose(db);
 
 // Create the server using Restify
@@ -13,7 +14,30 @@ var server = restify.createServer(function (request, response) {
   name: 'ReadAllAboutIt'
 });
 
+// Connect to MongoDB
+mongoose.connect('mongodb://localhost:27017/news', {
+  db: { native_parser: false },
+  server: { poolSize: 1 }
+});
 
+mongoose.connection.on('open', function() {
+  console.log('We have a connection, baby!');
+});
+
+mongoose.connection.on('error', function (err) {
+  console.log("Connection error: " + err);
+});
+
+mongoose.connection.on('disconnected', function () {
+  console.log('Disconnected');
+});
+
+process.on('SIGINT', function() {
+  mongoose.connection.close(function () {
+    console.log("DB disconnected through app termination");
+    process.exit(0);
+  });
+});
 
 // populate db with sky, BBC and Hackers rss news feeds
 parser.parseURL('http://news.sky.com/feeds/rss/home.xml', options, function(err, sky){
@@ -29,6 +53,7 @@ parser.parseURL('http://news.sky.com/feeds/rss/home.xml', options, function(err,
 
      skyDocument.save(function(err) {
         if (err) console.log(err);
+        console.log('Sky doc saved!');
      });
   };
 
@@ -47,11 +72,12 @@ parser.parseURL('http://feeds.bbci.co.uk/news/rss.xml', options, function(err, b
 
      bbcDocument.save(function(err) {
         if (err) console.log(err);
+        console.log('BBC doc saved!');
      });
   };
 });
 
-parser.parseURL('http://feeds.feedburner.com/TheHackersNews', options, function(err, hacker){
+parser.parseURL('https://news.ycombinator.com/rss', options, function(err, hacker){
   for (var i = 0; i < 10; i ++) {
     var items = hacker.items[i];
         hackerDocument = new db({
@@ -64,6 +90,7 @@ parser.parseURL('http://feeds.feedburner.com/TheHackersNews', options, function(
 
      hackerDocument.save(function(err) {
         if (err) console.log(err);
+        console.log('Hacker News doc saved!');
      });
   }
 });
@@ -74,21 +101,28 @@ server.use(restify.acceptParser(server.acceptable));
 server.use(restify.fullResponse());
 server.use(restify.bodyParser());
 
+// Homepage is mapped to show index.html, which will be used to show news content
+server.get('/news', news.query(), function(request, response, next) {
+  response.send();
+  return next();
+});
+
+server.get('/news/:id', news.detail(), function(request, response, next) {
+  response.send();
+  return next();
+});
+
+
 // Serve static files
 server.get(/.*/, restify.serveStatic({
   'directory': 'public',
   'default': 'index.html'
 }));
 
-// Homepage is mapped to showing index.html, which will be used to show news content
-server.get('/index.html', function(request, response, next) {
-  response.send("Test");
-  return next();
-});
 
 // Routes made available through Restify-Mongoose.
-server.get('/news', news.query());
-server.get('/news/:id', news.detail());
+//server.get('/news', news.query());
+//server.get('/news/:id', news.detail());
 
 server.listen(8080, function(){
   console.log('%s listening at %s', server.name, server.url);
