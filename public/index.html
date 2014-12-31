@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-ng-app='app'>
+<html>
 
 <head lang="en">
   <meta charset="UTF-8">
@@ -15,13 +15,29 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
   <!--Angular-->
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
-  <script src="main.ctrl.js"></script>
   <script src="app.js"></script>
 </head>
 
-<body>
-  <div data-ng-controller="MainController" class="container">
-    <h1>{{ 5 + 5 }}</h1>
+<body data-ng-app='app' data-ng-controller="MainController" >
+  <div class="container">
+    <h1>{{ title }}</h1>
+    <h3>{{ strapline }}</h3>
+
+    <h4>Current Feed Content</h4>
+    <ul data-ng-repeat="item in items">
+      <li>
+      <article>
+      <div>{{ item.provider }}</div>
+        <a data-ng-href="{{item.url}}">{{item.title}}</a>
+        <br>
+        <div data-ng-if="{{item.provider}} == Hacker News">
+          <summary><a data-ng-href="{{item.summary}}">Join the conversation</a></summary>
+        </div>
+        <summary>{{ item.summary }}</summary>
+        <time>{{item.timeAgo}}</time>
+       </article>
+       </li>
+    </ul>
   </div>
 </body>
 </html>

@@ -77,7 +77,7 @@ parser.parseURL('http://feeds.bbci.co.uk/news/rss.xml', options, function(err, b
   };
 });
 
-parser.parseURL('http://feeds.feedburner.com/TheHackersNews', options, function(err, hacker){
+parser.parseURL('https://news.ycombinator.com/rss', options, function(err, hacker){
   for (var i = 0; i < 10; i ++) {
     var items = hacker.items[i];
         hackerDocument = new db({
@@ -103,12 +103,12 @@ server.use(restify.bodyParser());
 
 // Homepage is mapped to show index.html, which will be used to show news content
 server.get('/news', news.query(), function(request, response, next) {
-  response.send();
+  response.send(200);
   return next();
 });
 
 server.get('/news/:id', news.detail(), function(request, response, next) {
-  response.send();
+  response.send(200);
   return next();
 });
 
