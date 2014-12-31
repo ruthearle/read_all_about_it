@@ -24,20 +24,18 @@
     <h3>{{ strapline }}</h3>
 
     <h4>Current Feed Content</h4>
-    <ul data-ng-repeat="item in items">
-      <li>
-      <article>
-      <div>{{ item.provider }}</div>
-        <a data-ng-href="{{item.url}}">{{item.title}}</a>
-        <br>
-        <div data-ng-if="{{item.provider}} == Hacker News">
-          <summary><a data-ng-href="{{item.summary}}">Join the conversation</a></summary>
-        </div>
-        <summary>{{ item.summary }}</summary>
-        <time>{{item.timeAgo}}</time>
-       </article>
+    <article data-ng-class="item">
+      <ul data-ng-repeat="item in items">
+        <li>
+          {{ item.provider }}
+          <br>
+          <a data-ng-href="{{item.url}}">{{item.title}}</a>
+          <br>
+          <summary class='summary'>{{ item.summary }}</summary>
+          <time class='time'>{{item.timeAgo}}</time>
        </li>
-    </ul>
-  </div>
+      </ul>
+    </article>
+  </div>  TODO use hn firebase api by extracting item id from comment url and then parsing that it the api. might have to render a different view for hn
 </body>
 </html>

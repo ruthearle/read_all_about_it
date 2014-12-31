@@ -78,7 +78,7 @@ parser.parseURL('http://feeds.bbci.co.uk/news/rss.xml', options, function(err, b
 });
 
 parser.parseURL('https://news.ycombinator.com/rss', options, function(err, hacker){
-  for (var i = 0; i < 10; i ++) {
+  for (var i = 0; i < hacker.items.length && i < 10; i ++) {
     var items = hacker.items[i];
         hackerDocument = new db({
         provider: hacker.title,
