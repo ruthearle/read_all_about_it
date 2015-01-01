@@ -1,0 +1,30 @@
+body {
+  background-color: #F6F6EF;
+}
+
+nav {
+  background-color: black;
+  color: #F6F6EF;
+  margin-top: -1%;
+  margin-right: -6%;
+  margin-left: -6%;
+  padding-left: 6%;
+  padding-top: 0.3%;
+  padding-bottom: 0.5%;
+}
+
+.strapline {
+  text: italic;
+}
+
+.page-title {
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
+li {
+  list-style-type: none;
+  border-bottom-style: groove;
+  margin-left: -3.5%;
+  padding-bottom: 1%;
+}

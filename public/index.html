@@ -11,6 +11,8 @@
   <!-- Optional theme -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
 
+  <link rel="stylesheet" href="stylesheets/main.css">
+
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
   <!--Angular-->
@@ -21,10 +23,12 @@
 
 <body data-ng-app='app' data-ng-controller="MainController" >
   <div class="container">
-    <h1>{{ title }}</h1>
-    <h3>{{ strapline }}</h3>
+    <nav>
+      <h1>{{ title }}</h1>
+      <h4 class="strapline">{{ strapline }}</h4>
+    </nav>
 
-    <h4>Current Feed Content</h4>
+    <h3 class="page-title">Current Feed Content</h3>
     <article data-ng-class="item">
       <ul data-ng-repeat="item in items">
         <li>
@@ -37,6 +41,7 @@
        </li>
       </ul>
     </article>
-  </div>  TODO use hn firebase api by extracting item id from comment url and then parsing that it the api. might have to render a different view for hn
+  </div>
 </body>
 </html>
+

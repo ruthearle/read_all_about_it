@@ -13,10 +13,9 @@ var newsItemsSchema = new Schema({
     timeAgo: String,
 });
 
-// This can be used once I figure out how to make the server fetch data automatically
-// When it is active the db is being populated but not showing on the route /news.
-// Would have to rectify this if this feature is implemented
 
+
+// This can be used once I figure out how to make the server fetch data automatically
 //newsItemsSchema.plugin(ttl, { ttl: 900 });
 
 Item = mongoose.model('Item', newsItemsSchema);
