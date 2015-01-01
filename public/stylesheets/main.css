@@ -28,3 +28,7 @@ li {
   margin-left: -3.5%;
   padding-bottom: 1%;
 }
+
+time {
+  text: italic;
+}

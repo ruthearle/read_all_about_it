@@ -107,11 +107,6 @@ server.get('/news', news.query(), function(request, response, next) {
   return next();
 });
 
-server.get('/news/:id', news.detail(), function(request, response, next) {
-  response.send(200);
-  return next();
-});
-
 
 // Serve static files
 server.get(/.*/, restify.serveStatic({
