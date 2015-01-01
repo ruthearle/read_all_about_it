@@ -30,5 +30,6 @@ li {
 }
 
 time {
-  text: italic;
+  font-style: italic;
+  font-size: 1em;
 }
