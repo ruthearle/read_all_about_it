@@ -3,7 +3,7 @@ body {
 }
 
 nav {
-  background-color: black;
+  background-color: #002C37;
   color: #F6F6EF;
   margin-top: -1%;
   margin-right: -6%;
@@ -27,6 +27,15 @@ li {
   border-bottom-style: groove;
   margin-left: -3.5%;
   padding-bottom: 1%;
+}
+
+a:link {
+  color: #00A69B;
+
+}
+
+a:hover {
+  text-decoration: none;
 }
 
 time {
