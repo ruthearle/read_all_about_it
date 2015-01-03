@@ -86,7 +86,7 @@ parser.parseURL('https://news.ycombinator.com/rss', options, function(err, hacke
         summary: items.summary,
         url: items.url,
         timeAgo: items.time_ago,
-        comments: /\d+/.exec(items.summary),
+        commentId: /\d+/.exec(items.summary).toString(),
      });
 
      hackerDocument.save(function(err) {

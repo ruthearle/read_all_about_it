@@ -38,8 +38,9 @@
           <br>
           <a data-ng-href="{{item.url}}" target="_blank">{{item.title}}</a>
           <br>
-          <summary class='summary'>{{ item.summary }}</summary>
+          <summary class='summary' data-ng-hide="item.provider === 'Hacker News'">{{ item.summary }}</summary>
           <time>{{item.timeAgo}}</time>
+          <div data-ng-hide="item.provider != 'Hacker News'"><a data-ng-href="https://news.ycombinator.com/item?id={{item.commentId}}">Add to the conversation</a></div>
        </li>
       </ul>
     </article>

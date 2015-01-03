@@ -11,7 +11,7 @@ var newsItemsSchema = new Schema({
     summary: String,
     url: String,
     timeAgo: String,
-    comments: String,
+    commentId: String,
 });
 
 

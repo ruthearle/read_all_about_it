@@ -1,7 +1,7 @@
 Read All About It
 =================
 
-
+Requirements
 use hn firebase api by extracting item id from comment url and then parsing that it the api.
 
 might have to render a different view for hn.

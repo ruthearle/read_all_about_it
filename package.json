@@ -14,5 +14,8 @@
     "underscore": "^1.7.0",
     "restify-mongoose": "latest",
     "mongoose-ttl": "latest"
+  },
+  "devDependencies": {
+    "mocha": "^2.1.0"
   }
 }
