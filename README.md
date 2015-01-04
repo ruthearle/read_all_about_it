@@ -14,7 +14,7 @@ instructions.
 
 Once NodeJs is installed clone this repository
 
-``$ git clone``
+``$ git clone git@github.com:ruthearle/read_all_about_it.git``
 
 ``$ cd cloned_directory`` into the newly cloned directory (replace ``cloned_directory`` with directory name).
 
