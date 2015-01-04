@@ -1,10 +1,8 @@
 var restify = require('restify'),
     fs      = require('fs'),
-    request = require('request'),
     parser = require('rssparser'),
     options = {},
-    __ = require('underscore'),
-    mongoose  = require('mongoose')
+    mongoose  = require('mongoose'),
     db = require('./model/news'),
     restifyMongoose = require('restify-mongoose'),
     news = restifyMongoose(db);

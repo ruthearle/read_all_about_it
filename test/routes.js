@@ -1,5 +1,5 @@
 var server = require('../server.js')
-var assert = require('assert');
+var expect = require('Chai').expect;
 var http = require('http');
 
 describe('server', function() {
@@ -15,7 +15,7 @@ describe('server', function() {
 describe('/', function() {
   it('should return 200', function (done) {
     http.get('http://localhost:8080', function(response) {
-      assert.equal(200, response.statusCode);
+      expect(response.statusCode).to.equal(200);
       done();
     });
   });

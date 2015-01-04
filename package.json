@@ -11,11 +11,11 @@
     "request": "latest",
     "restify": "latest",
     "rssparser": "0.0.9",
-    "underscore": "^1.7.0",
     "restify-mongoose": "latest",
     "mongoose-ttl": "latest"
   },
   "devDependencies": {
+    "chai": "^1.10.0",
     "mocha": "^2.1.0"
   }
 }
